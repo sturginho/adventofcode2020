@@ -8,7 +8,8 @@ for line in input:
 
 i = 0
 l = (len(inputlist))
-go = "yes"
+go = True
+
 while i < l:
     a = 1
     while a < l:
@@ -19,13 +20,13 @@ while i < l:
                 print(inputlist[a])
                 print(inputlist[b])
                 print(inputlist[i] * inputlist[a] * inputlist[b])
-                go = "no"
+                go = False
                 break
             b += 1
-        if go == "no":
+        if not go:
             break
         a += 1
-    if go == "no":
+    if not go:
         break
     i += 1
 
