@@ -1,7 +1,5 @@
-def part1():
-    #data=['FBFBBFFRLR']
+def getseats():
     seats = []
-    highseat = 0
     data = [line.strip() for line in open("input.txt", 'r')]
     for line in data:
         rownumber = 0
@@ -32,9 +30,31 @@ def part1():
                     if len(cols) == 1:
                        colnumber = cols[0] 
         seats.append(rownumber * 8 + colnumber)
-    for seat in seats:
+    return seats
+
+def part1():
+    highseat = 0
+    for seat in getseats():
         if seat > highseat:
             highseat = seat
     return highseat
 
 print(part1())
+
+def part2():
+    possible_seats = [poss for poss in range(0, (part1()+1))]
+    seats = getseats()
+    candidate_seats = []
+    myseat = ""
+    for poss in possible_seats:
+        if poss not in seats:
+            candidate_seats.append(poss)
+    #print(candidate_seats)
+    for candidate in candidate_seats:
+        a = candidate - 1
+        b = candidate + 1
+        if a in seats and b in seats:
+            myseat = candidate
+    return myseat
+
+print(part2())
